@@ -3,10 +3,4 @@ if SHIELD_SEB_MAKROPAD
 config ZMK_KEYBOARD_NAME
     default "Seb Makropad"
 
-config ZMK_EC11
-    default y
-
-config ZMK_EC11_REVERSE_ROTATION
-    default n
-
 endif

@@ -6,7 +6,7 @@
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         label = "KSCAN";
-        diode-direction = "row2col";
+        diode-direction = "col2row";
 
         col-gpios
             = <&pro_micro 3 GPIO_ACTIVE_HIGH> // Pin 6 (col0)
@@ -15,16 +15,17 @@
             ;
 
         row-gpios
-            = <&pro_micro 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Pin 5 (row0)
-            , <&pro_micro 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Pin 2 (row1)
-            , <&pro_micro 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Pin 1 (row2)
+            = <&pro_micro 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // Pin 5 (row0)
+            , <&pro_micro 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // Pin 2 (row1)
+            , <&pro_micro 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // Pin 1 (row2)
+            , <&pro_micro 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Pin 22 (Button S1)
             ;
     };
 
     encoder: encoder {
         compatible = "alps,ec11";
         label = "ENCODER";
-        a-gpios = <&pro_micro 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>; // Pin 21 (A)
+        a-gpios = <&pro_micro 18 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>; // Pin 21 (A)
         b-gpios = <&pro_micro 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;  // Pin 12 (B)
         steps = <80>;
     };
