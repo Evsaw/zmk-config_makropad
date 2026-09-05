@@ -1,0 +1,38 @@
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+    };
+
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        label = "KSCAN";
+        diode-direction = "row2col"; // Basierend auf deinem Schaltplan
+
+        col-gpios
+            = <&pro_micro 5 GPIO_ACTIVE_HIGH> // col0
+            , <&pro_micro 6 GPIO_ACTIVE_HIGH> // col1
+            , <&pro_micro 7 GPIO_ACTIVE_HIGH> // col2
+            ;
+
+        row-gpios
+            = <&pro_micro 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // row0 (Pin 5)
+            , <&pro_micro 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // row1 (Pin 2)
+            , <&pro_micro 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // row2 (Pin 1)
+            ;
+    };
+
+    // Encoder Definition
+    encoder: encoder {
+        compatible = "alps,ec11";
+        label = "ENCODER";
+        a-gpios = <&pro_micro 18 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>; // Pin 21
+        b-gpios = <&pro_micro 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;  // Pin 12
+        steps = <80>;
+    };
+
+    sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&encoder>;
+        triggers-per-rotation = <20>;
+    };
+};
