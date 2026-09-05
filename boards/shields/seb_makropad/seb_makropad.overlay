@@ -6,27 +6,26 @@
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         label = "KSCAN";
-        diode-direction = "row2col"; // Basierend auf deinem Schaltplan
+        diode-direction = "row2col";
 
         col-gpios
-            = <&pro_micro 5 GPIO_ACTIVE_HIGH> // col0
-            , <&pro_micro 6 GPIO_ACTIVE_HIGH> // col1
-            , <&pro_micro 7 GPIO_ACTIVE_HIGH> // col2
+            = <&pro_micro 3 GPIO_ACTIVE_HIGH> // Pin 6 (col0)
+            , <&pro_micro 4 GPIO_ACTIVE_HIGH> // Pin 7 (col1)
+            , <&pro_micro 5 GPIO_ACTIVE_HIGH> // Pin 8 (col2)
             ;
 
         row-gpios
-            = <&pro_micro 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // row0 (Pin 5)
-            , <&pro_micro 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // row1 (Pin 2)
-            , <&pro_micro 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // row2 (Pin 1)
+            = <&pro_micro 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Pin 5 (row0)
+            , <&pro_micro 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Pin 2 (row1)
+            , <&pro_micro 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Pin 1 (row2)
             ;
     };
 
-    // Encoder Definition
     encoder: encoder {
         compatible = "alps,ec11";
         label = "ENCODER";
-        a-gpios = <&pro_micro 18 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>; // Pin 21
-        b-gpios = <&pro_micro 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;  // Pin 12
+        a-gpios = <&pro_micro 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>; // Pin 21 (A)
+        b-gpios = <&pro_micro 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;  // Pin 12 (B)
         steps = <80>;
     };
 
